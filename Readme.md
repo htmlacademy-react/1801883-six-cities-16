@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Владислав Алтынбаев](https://up.htmlacademy.ru/react/16/user/1801883).
-* Наставник: `Неизвестно`.
+* Наставник: [Юлия Волкова](https://htmlacademy.ru/profile/julie_volkova).
 
 ---
 
