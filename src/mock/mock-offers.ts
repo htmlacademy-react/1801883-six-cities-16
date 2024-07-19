@@ -1,5 +1,5 @@
 import { generateRandomNumber, flipCoin, getRandomElement } from './utils';
-import { CITIES, OFFER_TYPES } from '../consts';
+import { CITIES, OFFER_TYPES, RatingRange } from '../consts';
 import { Offer, Location } from '../types';
 
 const TITLES = [
@@ -10,8 +10,7 @@ const TITLES = [
   'Perfectly located Castro',
   'Canal View Prinsengracht',
 ] as const;
-const ImageRange = { Min: 0, Max: 18 } as const;
-const RatingRange = { Min: 0, Max: 5 } as const;
+const ImageRange = { Min: 1, Max: 18 } as const;
 const LocationRange = { Min: 0, Max: 60, Zoom: { Min: 0, Max: 16 } } as const;
 const OFFERS_NUMBER = 5;
 
