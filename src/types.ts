@@ -1,3 +1,27 @@
+import { CITIES, OFFER_TYPES } from './consts';
+
+type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
+type Offer = {
+  id: string;
+  title: string;
+  type: typeof OFFER_TYPES[number];
+  price: number;
+  city: {
+    name: typeof CITIES[number];
+    location: Location;
+  };
+  location: Location;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage: string;
+}
+
 type User = {
   name: string;
   avatarUrl: string;
@@ -6,4 +30,4 @@ type User = {
   token: string;
 }
 
-export type { User };
+export type { Offer, Location, User };

@@ -1,5 +1,7 @@
 const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
 
+const OFFER_TYPES = ['room', 'house', 'hotel', 'apartment'] as const;
+
 const SortTypes = {
   Popular: {
     name: 'Popular'
@@ -15,4 +17,4 @@ const SortTypes = {
   }
 } as const;
 
-export { CITIES, SortTypes };
+export { CITIES, OFFER_TYPES, SortTypes };

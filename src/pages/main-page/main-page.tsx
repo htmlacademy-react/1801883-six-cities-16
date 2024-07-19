@@ -2,12 +2,12 @@ import Header from '../../components/header/header';
 import TabsList from '../../components/tabs-list/tabs-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
-import { User } from '../../types';
+import { Offer, User } from '../../types';
 
 type MainProps = {
-  offers: string[];
+  offers: Offer[];
   user?: User;
-  userFavorites?: string[];
+  userFavorites?: Offer[];
 }
 
 export default function MainPage({offers, user, userFavorites}: MainProps): JSX.Element {
@@ -15,7 +15,7 @@ export default function MainPage({offers, user, userFavorites}: MainProps): JSX.
   return (
     <div className="page page--gray page--main">
       {user
-        ? <Header user = {user} favoritesNumber = {userFavorites ? userFavorites.length : 0} />
+        ? <Header user={ user } favoritesNumber={ userFavorites ? userFavorites.length : 0 } />
         : <Header /> }
 
       <main className="page__main page__main--index">
@@ -24,7 +24,7 @@ export default function MainPage({offers, user, userFavorites}: MainProps): JSX.
 
         <div className="cities">
           <div className="cities__places-container container">
-            <OffersList offers = {offers} />
+            <OffersList offers={ offers } />
             <Map />
           </div>
         </div>

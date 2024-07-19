@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      offers = {mockData.offers}
-      user = {mockData.user}
-      userFavorites = {mockData.favorites}
+      offers={ mockData.offers }
+      user={ mockData.user }
+      userFavorites={ mockData.favorites }
     />
   </React.StrictMode>
 );
