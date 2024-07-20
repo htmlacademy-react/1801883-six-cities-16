@@ -9,6 +9,7 @@ type OffersNumberProps = {
 
 type OffersListProps = {
   offers: Offer[];
+  isNearOffersList?: boolean;
 }
 
 
@@ -18,18 +19,27 @@ function OffersNumber({offersNumber, city}: OffersNumberProps): JSX.Element {
   );
 }
 
-export default function OffersList({offers}: OffersListProps): JSX.Element {
+export default function OffersList({offers, isNearOffersList = false}: OffersListProps): JSX.Element {
   return (
-    <section className="cities__places places">
-      <h2 className="visually-hidden">Places</h2>
-      <OffersNumber offersNumber={ 228 } city = {'Paris'}/>
+    <section className={`${isNearOffersList ? 'near-places' : 'cities__places'} places`}>
+      {!isNearOffersList
+        ? (
+          <>
+            <h2 className="visually-hidden">Places</h2>
+            <OffersNumber offersNumber={ 228 } city = {'Paris'}/>
+            <SortingForm />
+          </>
+        )
+        : (
+          <h2 className="near-places__title">Other places in the neighbourhood</h2>
+        )}
 
-      <SortingForm />
 
-      <div className="cities__places-list places__list tabs__content">
+      <div className={isNearOffersList ? 'near-places__list places__list' : 'cities__places-list places__list tabs__content'}>
         {offers.map((offer: Offer) => (
           <OfferItem
-            key = { offer.id }
+            key={ offer.id }
+            isNearOffer={ isNearOffersList }
             title={ offer.title }
             type={ offer.type }
             price={ offer.price }
