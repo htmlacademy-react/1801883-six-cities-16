@@ -11,7 +11,6 @@ type MainProps = {
 }
 
 export default function MainPage({offers, user, userFavorites}: MainProps): JSX.Element {
-
   return (
     <div className="page page--gray page--main">
       {user
