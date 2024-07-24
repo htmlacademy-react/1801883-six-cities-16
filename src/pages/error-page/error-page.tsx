@@ -3,7 +3,7 @@ import './error-page.css';
 export default function ErrorPage(): JSX.Element {
   return (
     <>
-      <div></div>
+      <div className='error-wrapper'></div>
       <a href='#'>
         <svg id="svgWrap_2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 700 250">
           <g>
@@ -32,8 +32,8 @@ export default function ErrorPage(): JSX.Element {
           </defs>
         </svg>
 
-        <h2>Page Not Found</h2>
-        <h3>Go back to the main page</h3>
+        <h2 className='error-text'>Page Not Found</h2>
+        <h3 className='error-text error-text-2'>Go back to the main page</h3>
       </a>
     </>
   );
