@@ -1,19 +1,22 @@
+import { Link } from 'react-router-dom';
 import UserInfo from './components/user-info';
 import { User } from '../../types';
+import { AppRoute } from '../../consts';
 
 type HeaderProps = {
-  isLoginVisible?: boolean;
-  user?: User;
-  favoritesNumber?: number;
+  user: User | null;
+  favoritesNumber: number;
+  isLoginVisible: boolean;
 }
 
-export default function Header({isLoginVisible = true, user, favoritesNumber}: HeaderProps): JSX.Element {
+
+export default function Header({user, favoritesNumber, isLoginVisible}: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <Link to={AppRoute.Main.path} title={AppRoute.Main.title} className="header__logo-link header__logo-link--active">
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -21,19 +24,10 @@ export default function Header({isLoginVisible = true, user, favoritesNumber}: H
                 width="81"
                 height="41"
               />
-            </a>
+            </Link>
           </div>
 
-          {isLoginVisible
-            ? (
-              <nav className="header__nav">
-                {user
-                  ? <UserInfo isLogged = {Boolean(user)} email = {user.email} favoritesNumber = {favoritesNumber} />
-                  : <UserInfo isLogged = {Boolean(user)} />}
-              </nav>
-            )
-            : ''}
-
+          {isLoginVisible && <UserInfo user={ user } favoritesNumber={ favoritesNumber } />}
         </div>
       </div>
     </header>

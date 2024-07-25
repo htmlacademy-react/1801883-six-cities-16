@@ -4,7 +4,30 @@ const OFFER_TYPES = ['room', 'house', 'hotel', 'apartment'] as const;
 
 const RatingRange = { Min: 0, Max: 5 } as const;
 
-const SortTypes = {
+const AppRoute = {
+  Main: {
+    path: '/',
+    title: 'to main page',
+    additionalClass: 'page--gray page--main'
+  },
+  Login: {
+    path: '/login',
+    title: 'login',
+    additionalClass: 'page--gray page--login'
+  },
+  Favorites: {
+    path: '/favorites',
+    title: 'to favorites offers',
+    additionalClass: 'page--favorites-empty'
+  },
+  Offer: {
+    path: '/offer/:id',
+    title: 'to the offer',
+    additionalClass: ''
+  },
+} as const;
+
+const SortType = {
   Popular: {
     name: 'Popular'
   },
@@ -19,4 +42,4 @@ const SortTypes = {
   }
 } as const;
 
-export { CITIES, OFFER_TYPES, RatingRange, SortTypes };
+export { CITIES, OFFER_TYPES, AppRoute, SortType, RatingRange };
