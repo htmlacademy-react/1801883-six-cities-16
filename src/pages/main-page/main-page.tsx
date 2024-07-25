@@ -1,34 +1,28 @@
-import Header from '../../components/header/header';
 import TabsList from '../../components/tabs-list/tabs-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
-import { Offer, User } from '../../types';
+import { Offer } from '../../types';
 
 type MainProps = {
-  offers: Offer[];
-  user?: User;
-  userFavorites?: Offer[];
+  offers: Offer[] | null;
 }
 
-export default function MainPage({offers, user, userFavorites}: MainProps): JSX.Element {
+export default function MainPage({offers}: MainProps): JSX.Element {
+  const isEmptyList = (offers === null || offers.length === 0);
+
   return (
-    <div className="page page--gray page--main">
-      {user
-        ? <Header user={ user } favoritesNumber={ userFavorites ? userFavorites.length : 0 } />
-        : <Header /> }
+    <main className={`page__main page__main--index ${isEmptyList ? 'page__main--index-empty' : ''}`}>
+      <h1 className="visually-hidden">Cities</h1>
+      <TabsList />
 
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <TabsList />
+      <div className="cities">
+        <div className={`cities__places-container container ${isEmptyList ? 'cities__places-container--empty' : ''}`}>
 
-        <div className="cities">
-          <div className="cities__places-container container">
-            <OffersList offers={ offers } />
-            <Map />
-          </div>
+          <OffersList city='Paris' offers={ offers } />
+          <Map offers={ offers }/>
+
         </div>
-
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
