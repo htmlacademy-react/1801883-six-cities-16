@@ -1,19 +1,9 @@
-import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import { Offer, User } from '../../types';
 
-type FavoritesPageProps = {
-  user?: User;
-  userFavorites?: Offer[];
-}
 
-export default function FavoritesPage({user, userFavorites}: FavoritesPageProps): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
   return (
-    <div className="page">
-      {user
-        ? <Header user={ user } favoritesNumber={ userFavorites ? userFavorites.length : 0 } />
-        : <Header /> }
-
+    <>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -164,6 +154,6 @@ export default function FavoritesPage({user, userFavorites}: FavoritesPageProps)
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }
