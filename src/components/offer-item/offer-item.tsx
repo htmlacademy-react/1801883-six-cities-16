@@ -26,7 +26,7 @@ export default function OfferItem({id, isNearOffer, title, type, price, isFavori
       {isPremium ? <Premium /> : ''}
 
       <div className={`${isNearOffer ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
-        <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.title }>
+        <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.titleLink }>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>

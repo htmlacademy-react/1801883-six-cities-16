@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import OffersList from '../../components/offers-list/offers-list';
+import ErrorPage from '../error-page/error-page';
 import { Offer } from '../../types';
 
 type OfferPageProps = {
@@ -243,5 +244,5 @@ export default function OfferPage({offers, nearOffers}: OfferPageProps): JSX.Ele
 
     </main>
   )
-    : <div></div>;
+    : <ErrorPage />;
 }

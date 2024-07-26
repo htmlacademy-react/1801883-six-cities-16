@@ -16,7 +16,7 @@ export default function Header({user, favoritesNumber, isLoginVisible}: HeaderPr
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Link to={AppRoute.Main.path} title={AppRoute.Main.title} className="header__logo-link header__logo-link--active">
+            <Link to={AppRoute.Main.path} title={AppRoute.Main.titleLink} className="header__logo-link header__logo-link--active">
               <img
                 className="header__logo"
                 src="img/logo.svg"

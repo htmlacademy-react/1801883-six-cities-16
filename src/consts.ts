@@ -7,24 +7,34 @@ const RatingRange = { Min: 0, Max: 5 } as const;
 const AppRoute = {
   Main: {
     path: '/',
-    title: 'to main page',
+    title: '6 Cities',
+    titleLink: 'to main page',
     additionalClass: 'page--gray page--main'
   },
   Login: {
     path: '/login',
-    title: 'login',
+    title: '6 Cities: Authorization',
+    titleLink: 'login',
     additionalClass: 'page--gray page--login'
   },
   Favorites: {
     path: '/favorites',
-    title: 'to favorites offers',
+    title: '6 Cities: Favorites offers',
+    titleLink: 'to favorites offers',
     additionalClass: 'page--favorites-empty'
   },
   Offer: {
     path: '/offer/:id',
-    title: 'to the offer',
+    title: '6 Cities: Offer',
+    titleLink: 'to the offer',
     additionalClass: ''
   },
+} as const;
+
+const AuthorizationStatus = {
+  Auth: 'AUTH',
+  NoAuth: 'NO_AUTH',
+  Unknown: 'UNKNOWN'
 } as const;
 
 const SortType = {
@@ -42,4 +52,4 @@ const SortType = {
   }
 } as const;
 
-export { CITIES, OFFER_TYPES, AppRoute, SortType, RatingRange };
+export { CITIES, OFFER_TYPES, AppRoute, AuthorizationStatus, SortType, RatingRange };

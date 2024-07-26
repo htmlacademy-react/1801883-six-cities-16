@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import './error-page.css';
 
 export default function ErrorPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>Not Found</title>
+      </Helmet>
+
       <div className='error-wrapper'></div>
 
       <Link to='/' title='to main page'>
