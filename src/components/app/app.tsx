@@ -25,7 +25,7 @@ export default function App({offers, user, userFavorites, nearbyOffers}: AppProp
           <Route index element={ <MainPage offers={ offers }/> }/>
           <Route path={ AppRoute.Login.path } element={ <LoginPage /> } />
           <Route path={ AppRoute.Favorites.path } element={ <FavoritesPage /> } />
-          <Route path={ AppRoute.Offer.path } element={ <OfferPage nearOffers={ nearbyOffers }/> } />
+          <Route path={ AppRoute.Offer.path } element={ <OfferPage offers={ offers } nearOffers={ nearbyOffers }/> } />
         </Route>
 
         <Route path='*' element={ <ErrorPage /> } />
