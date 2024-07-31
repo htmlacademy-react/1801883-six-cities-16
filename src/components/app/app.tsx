@@ -9,6 +9,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import ErrorPage from '../../pages/error-page/error-page';
+import { sortOffersByCity, getOffersByCity } from '../../utils';
 import { Offer, User } from '../../types';
 import { CITIES, AppRoute, AuthorizationStatus } from '../../consts';
 
@@ -22,6 +23,7 @@ type AppProps = {
 
 export default function App({offers, user, userFavorites, nearbyOffers}: AppProps): JSX.Element {
   const [currentCity, setCurrentCity] = useState<typeof CITIES[number]>(CITIES[0]);
+  const sortedOffersByCity = sortOffersByCity(offers);
   const authorizationStatus = user === null ? AuthorizationStatus.NoAuth : AuthorizationStatus.Auth;
 
   return (
@@ -29,7 +31,7 @@ export default function App({offers, user, userFavorites, nearbyOffers}: AppProp
       <BrowserRouter>
         <Routes>
           <Route path={ AppRoute.Main.path } element={ <Layout user={ user } favoritesNumber={ userFavorites ? userFavorites.length : 0 }/> }>
-            <Route index element={ <MainPage offers={ offers } currentCity={ currentCity } handlerTabCLick={ setCurrentCity } /> }/>
+            <Route index element={ <MainPage offers={ getOffersByCity(currentCity, sortedOffersByCity) } currentCity={ currentCity } handlerTabCLick={ setCurrentCity } /> }/>
             <Route path={ AppRoute.Login.path } element={ <LoginPage currentCity={ currentCity }/> } />
             <Route path={ AppRoute.Favorites.path }
               element={
