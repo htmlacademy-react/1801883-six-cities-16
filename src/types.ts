@@ -22,6 +22,15 @@ type Offer = {
   previewImage: string;
 }
 
+type FullOffer = Omit<Offer, 'previewImage'> & {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: UserShort;
+  images: string[];
+  maxAdults: number;
+}
+
 type User = {
   name: string;
   avatarUrl: string;
@@ -30,4 +39,6 @@ type User = {
   token: string;
 }
 
-export type { Offer, Location, User };
+type UserShort = Omit<User, 'email' | 'token'>;
+
+export type { Offer, FullOffer, Location, User, UserShort };
