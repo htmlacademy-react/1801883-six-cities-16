@@ -6,24 +6,31 @@ import BookmarkButton from './components/bookmark-button';
 import Rating from './components/rating';
 import Title from './components/title';
 import Type from './components/type';
-import { OFFER_TYPES, AppRoute, CardClass } from '../../consts';
+import { Offer } from '../../types';
+import { AppRoute, CardClass } from '../../consts';
 
 type OfferItemProps = {
-  id: string;
+  offer: Offer;
   cardType: keyof typeof CardClass;
-  title: string;
-  type: typeof OFFER_TYPES[number];
-  price: number;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  previewImage: string;
+  handleOfferMouseOver: (id: string | null) => void;
 }
 
 
-export default function OfferItem({id, cardType, title, type, price, isFavorite, isPremium, rating, previewImage }: OfferItemProps): JSX.Element {
+export default function OfferItem({offer, cardType, handleOfferMouseOver}: OfferItemProps): JSX.Element {
+  const {id, title, type, price, isFavorite, isPremium, rating, previewImage} = offer;
+
   return (
-    <article className={`${CardClass[cardType].ArticleClass} place-card`}>
+    <article
+      className={`${CardClass[cardType].ArticleClass} place-card`}
+      {... (cardType === 'Base')
+        ? {
+          onMouseEnter: () => handleOfferMouseOver(id),
+          onMouseLeave: () => handleOfferMouseOver(null)
+        }
+        : {}
+      }
+    >
+
       {isPremium && <Premium />}
 
       <div className={`${CardClass[cardType].DivImageClass} place-card__image-wrapper`}>
@@ -37,7 +44,6 @@ export default function OfferItem({id, cardType, title, type, price, isFavorite,
           <Price price={ price }/>
           <BookmarkButton isFavorite={ isFavorite } />
         </div>
-
         <Rating rating={ rating }/>
         <Title title={ title } />
         <Type type={ type } />
