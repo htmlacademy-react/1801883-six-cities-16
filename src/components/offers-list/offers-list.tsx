@@ -1,55 +1,39 @@
-import SortingForm from '../sorting-form/sorting-form';
-import OfferItem from '../offer-item/offer-item';
+import EmptyList from './components/empty-list';
+import FilledList from './components/filled-list';
 import { Offer } from '../../types';
-
-type OffersNumberProps = {
-  offersNumber: number;
-  city: string;
-}
+import { CITIES } from '../../consts';
 
 type OffersListProps = {
-  offers: Offer[];
+  city: typeof CITIES[number];
+  offers: Offer[] | null;
   isNearOffersList?: boolean;
 }
 
+const SectionClass = {
+  Empty: 'cities__no-places',
+  Near: 'near-places places',
+  Default: 'cities__places places'
+} as const;
 
-function OffersNumber({offersNumber, city}: OffersNumberProps): JSX.Element {
-  return(
-    <b className="places__found">{offersNumber} places to stay in {city}</b>
-  );
-}
 
-export default function OffersList({offers, isNearOffersList = false}: OffersListProps): JSX.Element {
+const getSectionClass = (isEmptyList: boolean, isNearOffersList: boolean): string => {
+  if (isEmptyList) {
+    return SectionClass.Empty;
+  } else if (isNearOffersList) {
+    return SectionClass.Near;
+  }
+  return SectionClass.Default;
+};
+
+
+export default function OffersList({city, offers, isNearOffersList = false}: OffersListProps): JSX.Element {
+  const isEmptyList = offers === null || offers.length === 0;
+
   return (
-    <section className={`${isNearOffersList ? 'near-places' : 'cities__places'} places`}>
-      {!isNearOffersList
-        ? (
-          <>
-            <h2 className="visually-hidden">Places</h2>
-            <OffersNumber offersNumber={ 228 } city = {'Paris'}/>
-            <SortingForm />
-          </>
-        )
-        : (
-          <h2 className="near-places__title">Other places in the neighbourhood</h2>
-        )}
-
-
-      <div className={isNearOffersList ? 'near-places__list places__list' : 'cities__places-list places__list tabs__content'}>
-        {offers.map((offer: Offer) => (
-          <OfferItem
-            key={ offer.id }
-            isNearOffer={ isNearOffersList }
-            title={ offer.title }
-            type={ offer.type }
-            price={ offer.price }
-            isFavorite={ offer.isFavorite }
-            isPremium={ offer.isPremium }
-            rating={ offer.rating }
-            previewImage={ offer.previewImage }
-          />
-        ))}
-      </div>
+    <section className={getSectionClass(isEmptyList, isNearOffersList)}>
+      {isEmptyList
+        ? <EmptyList city={ city }/>
+        : <FilledList city={ city } offers={ offers } isNearOffersList={ isNearOffersList }/>}
     </section>
   );
 }

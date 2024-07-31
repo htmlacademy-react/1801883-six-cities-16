@@ -1,39 +1,50 @@
+import { Link } from 'react-router-dom';
 import Avatar from './avatar';
+import { User } from '../../../types';
+import { AppRoute } from '../../../consts';
 
 type UserInfoProps = {
-  isLogged: boolean;
-  email?: string;
-  favoritesNumber?: number;
+  user: User | null;
+  favoritesNumber: number;
 }
 
 
-export default function UserInfo({isLogged, email, favoritesNumber}: UserInfoProps): JSX.Element {
+function SignOut(): JSX.Element {
   return (
-    <ul className="header__nav-list">
-      <li className="header__nav-item user">
-        <a className="header__nav-link header__nav-link--profile" href="#">
-          <Avatar />
+    <li className="header__nav-item">
+      <a className="header__nav-link" href="#">
+        <span className="header__signout">Sign out</span>
+      </a>
+    </li>
+  );
+}
 
-          {isLogged
-            ?
-            <>
-              <span className="header__user-name user__name">{email}</span>
-              <span className="header__favorite-count">{favoritesNumber}</span>
-            </>
-            :
-            <span className="header__login">Sign in</span>}
-        </a>
-      </li>
+export default function UserInfo({user, favoritesNumber}: UserInfoProps): JSX.Element {
+  const isLogged = user !== null;
+  const email = isLogged ? user.email : null;
+  const route = isLogged ? AppRoute.Favorites : AppRoute.Login;
 
-      {isLogged
-        ?
-        <li className="header__nav-item">
-          <a className="header__nav-link" href="#">
-            <span className="header__signout">Sign out</span>
-          </a>
+  return (
+    <nav className="header__nav">
+      <ul className="header__nav-list">
+        <li className="header__nav-item user">
+          <Link to={ route.path } title={ route.titleLink } className="header__nav-link header__nav-link--profile">
+            <Avatar />
+
+            {isLogged
+              ?
+              <>
+                <span className="header__user-name user__name">{email}</span>
+                <span className="header__favorite-count">{favoritesNumber}</span>
+              </>
+              :
+              <span className="header__login">Sign in</span>}
+          </Link>
         </li>
-        : ''}
 
-    </ul>
+        {isLogged && <SignOut />}
+
+      </ul>
+    </nav>
   );
 }

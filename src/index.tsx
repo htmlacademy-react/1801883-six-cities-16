@@ -15,6 +15,7 @@ root.render(
       offers={ mockData.offers }
       user={ mockData.user }
       userFavorites={ mockData.favorites }
+      nearbyOffers={ mockData.nearbyOffers }
     />
   </React.StrictMode>
 );
