@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import Premium from './components/premium';
+import PreviewImage from './components/preview-image';
 import Price from './components/price';
 import BookmarkButton from './components/bookmark-button';
 import Rating from './components/rating';
 import Title from './components/title';
 import Type from './components/type';
-import { OFFER_TYPES, AppRoute } from '../../consts';
+import { OFFER_TYPES, AppRoute, CardClass } from '../../consts';
 
 type OfferItemProps = {
   id: string;
-  isNearOffer: boolean;
+  cardType: keyof typeof CardClass;
   title: string;
   type: typeof OFFER_TYPES[number];
   price: number;
@@ -20,18 +21,18 @@ type OfferItemProps = {
 }
 
 
-export default function OfferItem({id, isNearOffer, title, type, price, isFavorite, isPremium, rating, previewImage }: OfferItemProps): JSX.Element {
+export default function OfferItem({id, cardType, title, type, price, isFavorite, isPremium, rating, previewImage }: OfferItemProps): JSX.Element {
   return (
-    <article className={`${isNearOffer ? 'near-places__card' : 'cities__card'} place-card`}>
-      {isPremium ? <Premium /> : ''}
+    <article className={`${CardClass[cardType].ArticleClass} place-card`}>
+      {isPremium && <Premium />}
 
-      <div className={`${isNearOffer ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
+      <div className={`${CardClass[cardType].DivImageClass} place-card__image-wrapper`}>
         <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.titleLink }>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <PreviewImage link={ previewImage } />
         </Link>
       </div>
 
-      <div className="place-card__info">
+      <div className={`place-card__info ${(cardType === 'Favorite') && 'favorites__card-info'}`}>
         <div className="place-card__price-wrapper">
           <Price price={ price }/>
           <BookmarkButton isFavorite={ isFavorite } />

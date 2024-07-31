@@ -37,6 +37,21 @@ const AuthorizationStatus = {
   Unknown: 'UNKNOWN'
 } as const;
 
+const CardClass = {
+  Base: {
+    ArticleClass: 'cities__card',
+    DivImageClass: 'cities__image-wrapper'
+  },
+  Favorite: {
+    ArticleClass: 'favorites__card',
+    DivImageClass: 'favorites__image-wrapper'
+  },
+  Near: {
+    ArticleClass: 'near-places__card',
+    DivImageClass: 'near-places__image-wrapper'
+  }
+} as const;
+
 const SortType = {
   Popular: {
     name: 'Popular'
@@ -52,4 +67,4 @@ const SortType = {
   }
 } as const;
 
-export { CITIES, OFFER_TYPES, AppRoute, AuthorizationStatus, SortType, RatingRange };
+export { CITIES, OFFER_TYPES, AppRoute, AuthorizationStatus, CardClass, RatingRange, SortType };

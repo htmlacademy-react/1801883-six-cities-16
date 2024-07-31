@@ -30,7 +30,7 @@ export default function FilledList({city, offers, isNearOffersList}: FilledListP
           <OfferItem
             key={ offer.id }
             id={ offer.id }
-            isNearOffer={ isNearOffersList }
+            cardType={ isNearOffersList ? 'Near' : 'Base' }
             title={ offer.title }
             type={ offer.type }
             price={ offer.price }
