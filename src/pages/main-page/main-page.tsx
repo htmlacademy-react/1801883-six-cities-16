@@ -4,13 +4,13 @@ import Map from '../../components/map/map';
 import { Offer } from '../../types';
 import { CITIES } from '../../consts';
 
-type MainProps = {
+type MainPageProps = {
   offers: Offer[] | null;
   currentCity: typeof CITIES[number];
   handlerTabCLick: (city: typeof CITIES[number]) => void;
 }
 
-export default function MainPage({offers, currentCity, handlerTabCLick}: MainProps): JSX.Element {
+export default function MainPage({offers, currentCity, handlerTabCLick}: MainPageProps): JSX.Element {
   const isEmptyList = (offers === null || offers.length === 0);
 
   return (

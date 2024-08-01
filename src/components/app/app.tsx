@@ -36,7 +36,7 @@ export default function App({offers, user, userFavorites, nearbyOffers}: AppProp
             <Route path={ AppRoute.Favorites.path }
               element={
                 <PrivateRoute authorizationStatus={authorizationStatus} redirectRoute={AppRoute.Login.path}>
-                  <FavoritesPage />
+                  <FavoritesPage favoriteOffers={ userFavorites } handlerCityClick={ setCurrentCity } />
                 </PrivateRoute>
               }
             />

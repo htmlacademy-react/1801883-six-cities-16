@@ -5,11 +5,11 @@ const ImageSize = {
 
 type PreviewImageProps = {
   link: string;
-  isFavoriteCard?: boolean;
+  isFavoriteCard: boolean;
 }
 
 
-export default function PreviewImage({link, isFavoriteCard = false}: PreviewImageProps): JSX.Element {
+export default function PreviewImage({link, isFavoriteCard}: PreviewImageProps): JSX.Element {
   const [width, height] = isFavoriteCard ? ImageSize.Favorite : ImageSize.Base;
 
   return (

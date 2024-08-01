@@ -12,7 +12,7 @@ import { AppRoute, CardClass } from '../../consts';
 type OfferItemProps = {
   offer: Offer;
   cardType: keyof typeof CardClass;
-  handleOfferMouseOver: (id: string | null) => void;
+  handleOfferMouseOver?: (id: string | null) => void;
 }
 
 
@@ -22,7 +22,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
   return (
     <article
       className={`${CardClass[cardType].ArticleClass} place-card`}
-      {... (cardType === 'Base')
+      {... (cardType === 'Base' && handleOfferMouseOver)
         ? {
           onMouseEnter: () => handleOfferMouseOver(id),
           onMouseLeave: () => handleOfferMouseOver(null)
@@ -35,7 +35,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
 
       <div className={`${CardClass[cardType].DivImageClass} place-card__image-wrapper`}>
         <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.titleLink }>
-          <PreviewImage link={ previewImage } />
+          <PreviewImage link={ previewImage } isFavoriteCard={ cardType === 'Favorite' } />
         </Link>
       </div>
 
