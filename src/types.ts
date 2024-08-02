@@ -19,7 +19,7 @@ type Offer = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  previewImage: string;
+  previewImage?: string;
 }
 
 type FullOffer = Omit<Offer, 'previewImage'> & {

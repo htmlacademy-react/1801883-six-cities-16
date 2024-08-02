@@ -10,18 +10,19 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import { sortOffersByCity, getOffersByCity } from '../../utils';
-import { Offer, User } from '../../types';
+import { Offer, FullOffer, User } from '../../types';
 import { CITIES, AppRoute, AuthorizationStatus } from '../../consts';
 
 type AppProps = {
   offers: Offer[] | null;
   user: User | null;
   userFavorites: Offer[] | null;
+  getFullOffer: (id: string) => FullOffer | null;
   nearbyOffers: Offer[];
 }
 
 
-export default function App({offers, user, userFavorites, nearbyOffers}: AppProps): JSX.Element {
+export default function App({offers, user, userFavorites, getFullOffer, nearbyOffers}: AppProps): JSX.Element {
   const [currentCity, setCurrentCity] = useState<typeof CITIES[number]>(CITIES[0]);
   const sortedOffersByCity = sortOffersByCity(offers);
   const authorizationStatus = user === null ? AuthorizationStatus.NoAuth : AuthorizationStatus.Auth;
@@ -35,12 +36,12 @@ export default function App({offers, user, userFavorites, nearbyOffers}: AppProp
             <Route path={ AppRoute.Login.path } element={ <LoginPage currentCity={ currentCity }/> } />
             <Route path={ AppRoute.Favorites.path }
               element={
-                <PrivateRoute authorizationStatus={authorizationStatus} redirectRoute={AppRoute.Login.path}>
+                <PrivateRoute authorizationStatus={ authorizationStatus } redirectRoute={AppRoute.Login.path}>
                   <FavoritesPage favoriteOffers={ userFavorites } handlerCityClick={ setCurrentCity } />
                 </PrivateRoute>
               }
             />
-            <Route path={ AppRoute.Offer.path } element={ <OfferPage offers={ offers } nearOffers={ nearbyOffers }/> } />
+            <Route path={ AppRoute.Offer.path } element={ <OfferPage authorizationStatus={ authorizationStatus } getFullOffer={ getFullOffer } nearOffers={ nearbyOffers }/> } />
           </Route>
 
           <Route path='*' element={ <ErrorPage /> } />

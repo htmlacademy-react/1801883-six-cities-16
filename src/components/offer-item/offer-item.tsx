@@ -35,7 +35,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
 
       <div className={`${CardClass[cardType].DivImageClass} place-card__image-wrapper`}>
         <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.titleLink }>
-          <PreviewImage link={ previewImage } isFavoriteCard={ cardType === 'Favorite' } />
+          <PreviewImage link={ previewImage as string } isFavoriteCard={ cardType === 'Favorite' } />
         </Link>
       </div>
 
@@ -44,7 +44,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
           <Price price={ price }/>
           <BookmarkButton isFavorite={ isFavorite } />
         </div>
-        <Rating rating={ rating }/>
+        <Rating rating={ rating } />
         <Title title={ title } />
         <Type type={ type } />
       </div>
