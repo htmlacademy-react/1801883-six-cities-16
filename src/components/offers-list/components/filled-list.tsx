@@ -11,8 +11,7 @@ type FilledListProps = {
 
 
 export default function FilledList({city, offers, isNearOffersList}: FilledListProps): JSX.Element {
-  const [selectedOffer, setSelectedOffer] = useState<string | null>(null);
-  console.log(selectedOffer);
+  const [, setSelectedOffer] = useState<string | null>(null);
 
   return(
     <>
