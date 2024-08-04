@@ -1,22 +1,23 @@
+import { Cities } from '../../types';
 import { CITIES } from '../../consts';
 
 type TabsItemProps = {
-  city: typeof CITIES[number];
-  isActiv: boolean;
-  handlerTabCLick: (city: typeof CITIES[number]) => void;
+  city: Cities;
+  isActive: boolean;
+  handlerTabCLick: (city: Cities) => void;
 }
 
 type TabsListProps = {
-  currentCity: typeof CITIES[number];
-  handlerTabCLick: (city: typeof CITIES[number]) => void;
+  currentCity: Cities;
+  handlerTabCLick: (city: Cities) => void;
 }
 
 
-function TabsItem({city, isActiv, handlerTabCLick}: TabsItemProps): JSX.Element {
+function TabsItem({city, isActive, handlerTabCLick}: TabsItemProps): JSX.Element {
   return (
     <li className="locations__item">
       <div
-        className={`locations__item-link tabs__item ${isActiv ? 'tabs__item--active' : ''}`}
+        className={`locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`}
         onClick={ ()=> handlerTabCLick(city) }
       >
         <span>{city}</span>
@@ -34,7 +35,7 @@ export default function TabsList({currentCity, handlerTabCLick}: TabsListProps):
             <TabsItem
               key={ city }
               city={ city }
-              isActiv={ city === currentCity }
+              isActive={ city === currentCity }
               handlerTabCLick={ handlerTabCLick }
             />
           ))}

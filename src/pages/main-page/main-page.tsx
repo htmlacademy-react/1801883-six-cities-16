@@ -1,13 +1,12 @@
 import TabsList from '../../components/tabs-list/tabs-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
-import { Offer } from '../../types';
-import { CITIES } from '../../consts';
+import { Offer, Cities } from '../../types';
 
 type MainPageProps = {
   offers: Offer[] | null;
-  currentCity: typeof CITIES[number];
-  handlerTabCLick: (city: typeof CITIES[number]) => void;
+  currentCity: Cities;
+  handlerTabCLick: (city: Cities) => void;
 }
 
 export default function MainPage({offers, currentCity, handlerTabCLick}: MainPageProps): JSX.Element {

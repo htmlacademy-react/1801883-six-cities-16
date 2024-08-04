@@ -1,11 +1,10 @@
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import Footer from '../../components/footer/footer';
-import { Offer } from '../../types';
-import { CITIES } from '../../consts';
+import { Offer, Cities } from '../../types';
 
 type FavoritesPageProps = {
   favoriteOffers: Offer[] | null;
-  handlerCityClick: (city: typeof CITIES[number]) => void;
+  handlerCityClick: (city: Cities) => void;
 }
 
 

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { CITIES, AppRoute } from '../../consts';
+import { AppRoute } from '../../consts';
+import { Cities } from '../../types';
 
 type LoginPageProps = {
-  currentCity: typeof CITIES[number];
+  currentCity: Cities;
 }
+
 
 export default function LoginPage({currentCity}: LoginPageProps): JSX.Element {
   return (
