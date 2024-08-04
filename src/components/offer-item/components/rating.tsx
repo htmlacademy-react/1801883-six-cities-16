@@ -7,7 +7,7 @@ type RatingProps = {
 
 
 export default function Rating({rating, isBigElement = false}: RatingProps): JSX.Element {
-  const ratingInPercent: number = Math.round((rating / (RatingRange.Max - RatingRange.Min)) * 100);
+  const ratingInPercent: number = (Math.round(rating) / (RatingRange.Max - RatingRange.Min)) * 100;
   const extraClass = isBigElement ? 'offer__' : 'place-card__';
 
   return (

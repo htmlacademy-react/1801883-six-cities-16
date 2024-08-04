@@ -8,7 +8,7 @@ import OfferComments from '../../components/offer-comments/offer-comments';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
 import ErrorPage from '../error-page/error-page';
-import { capitalizeFirstLetter } from '../../utils';
+import { capitalizeFirstLetter, checkPluralRule } from '../../utils';
 import { AuthorizationStatus } from '../../consts';
 import { Offer, FullOffer } from '../../types';
 
@@ -44,8 +44,8 @@ export default function OfferPage({authorizationStatus, getFullOffer, nearOffers
 
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">{capitalizeFirstLetter(type)}</li>
-                <li className="offer__feature offer__feature--bedrooms">{bedrooms} Bedrooms</li>
-                <li className="offer__feature offer__feature--adults">Max {maxAdults} adults</li>
+                <li className="offer__feature offer__feature--bedrooms">{checkPluralRule(bedrooms, 'Bedroom')}</li>
+                <li className="offer__feature offer__feature--adults">{`Max ${checkPluralRule(maxAdults, 'adult')}`}</li>
               </ul>
 
               <Price price={ price } isBigElement />

@@ -2,6 +2,8 @@ import { Offer } from './types';
 
 const capitalizeFirstLetter = (inputWord: string): string=> inputWord[0].toUpperCase() + inputWord.slice(1);
 
+const checkPluralRule = (itemsNumber: number, itemsName: string): string => `${itemsNumber} ${itemsName}${itemsNumber > 1 ? 's' : ''}`;
+
 const sortOffersByCity = (offers: Offer[] | null) => {
   if (offers === null) {
     return null;
@@ -23,4 +25,4 @@ const getOffersByCity = (city: string, sortedOffers: Record<string, Offer[]> | n
   return city in sortedOffers ? sortedOffers[city] : null;
 };
 
-export { capitalizeFirstLetter, sortOffersByCity, getOffersByCity };
+export { capitalizeFirstLetter, checkPluralRule, sortOffersByCity, getOffersByCity };

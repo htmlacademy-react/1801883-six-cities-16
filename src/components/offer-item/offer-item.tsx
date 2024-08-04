@@ -9,6 +9,11 @@ import Type from './components/type';
 import { Offer } from '../../types';
 import { AppRoute, CardClass } from '../../consts';
 
+type CurrentLink = {
+  path: string;
+  title: string;
+}
+
 type OfferItemProps = {
   offer: Offer;
   cardType: keyof typeof CardClass;
@@ -18,6 +23,11 @@ type OfferItemProps = {
 
 export default function OfferItem({offer, cardType, handleOfferMouseOver}: OfferItemProps): JSX.Element {
   const {id, title, type, price, isFavorite, isPremium, rating, previewImage} = offer;
+
+  const currentLink: CurrentLink = {
+    path: AppRoute.Offer.path.replace(':id', id),
+    title: AppRoute.Offer.titleLink
+  };
 
   return (
     <article
@@ -34,7 +44,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
       {isPremium && <Premium />}
 
       <div className={`${CardClass[cardType].DivImageClass} place-card__image-wrapper`}>
-        <Link to={ AppRoute.Offer.path.replace(':id', id) } title={ AppRoute.Offer.titleLink }>
+        <Link to={ currentLink.path } title={ currentLink.title }>
           <PreviewImage link={ previewImage as string } isFavoriteCard={ cardType === 'Favorite' } />
         </Link>
       </div>
@@ -45,7 +55,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
           <BookmarkButton isFavorite={ isFavorite } />
         </div>
         <Rating rating={ rating } />
-        <Title title={ title } />
+        <Title title={ title } currentLink={ currentLink } />
         <Type type={ type } />
       </div>
     </article>
