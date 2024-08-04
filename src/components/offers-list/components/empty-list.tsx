@@ -1,5 +1,7 @@
+import { Cities } from '../../../types';
+
 type EmptyListProps = {
-  city: string;
+  city: Cities;
 }
 
 

@@ -1,4 +1,13 @@
-export default function LoginPage(): JSX.Element {
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../consts';
+import { Cities } from '../../types';
+
+type LoginPageProps = {
+  currentCity: Cities;
+}
+
+
+export default function LoginPage({currentCity}: LoginPageProps): JSX.Element {
   return (
     <main className="page__main page__main--login">
       <div className="page__login-container container">
@@ -34,9 +43,9 @@ export default function LoginPage(): JSX.Element {
 
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
+            <Link className="locations__item-link" to={ AppRoute.Main.path }>
+              <span>{currentCity}</span>
+            </Link>
           </div>
         </section>
 

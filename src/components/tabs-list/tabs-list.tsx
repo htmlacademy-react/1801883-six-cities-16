@@ -1,29 +1,44 @@
+import { Cities } from '../../types';
 import { CITIES } from '../../consts';
 
 type TabsItemProps = {
-  city: string;
-  isActiv: boolean;
+  city: Cities;
+  isActive: boolean;
+  handleTabCLick: (city: Cities) => void;
+}
+
+type TabsListProps = {
+  currentCity: Cities;
+  handleTabCLick: (city: Cities) => void;
 }
 
 
-function TabsItem({city, isActiv}: TabsItemProps): JSX.Element {
+function TabsItem({city, isActive, handleTabCLick}: TabsItemProps): JSX.Element {
   return (
     <li className="locations__item">
-      <a className={`locations__item-link tabs__item ${isActiv ? 'tabs__item--active' : ''}`} href="#">
+      <div
+        className={`locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`}
+        onClick={ ()=> handleTabCLick(city) }
+      >
         <span>{city}</span>
-      </a>
+      </div>
     </li>
   );
 }
 
-export default function TabsList(): JSX.Element {
+export default function TabsList({currentCity, handleTabCLick}: TabsListProps): JSX.Element {
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {CITIES.map((city: string): JSX.Element =>
-            <TabsItem key = {city} city = {city} isActiv = {city === CITIES[0]} />
-          )}
+          {CITIES.map((city): JSX.Element => (
+            <TabsItem
+              key={ city }
+              city={ city }
+              isActive={ city === currentCity }
+              handleTabCLick={ handleTabCLick }
+            />
+          ))}
         </ul>
       </section>
     </div>

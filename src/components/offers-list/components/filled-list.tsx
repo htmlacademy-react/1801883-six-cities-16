@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import SortingForm from '../../sorting-form/sorting-form';
 import OfferItem from '../../offer-item/offer-item';
 import { Offer } from '../../../types';
@@ -10,6 +11,8 @@ type FilledListProps = {
 
 
 export default function FilledList({city, offers, isNearOffersList}: FilledListProps): JSX.Element {
+  const [, setSelectedOffer] = useState<string | null>(null);
+
   return(
     <>
       {isNearOffersList
@@ -29,15 +32,9 @@ export default function FilledList({city, offers, isNearOffersList}: FilledListP
         {offers.map((offer: Offer) => (
           <OfferItem
             key={ offer.id }
-            id={ offer.id }
-            isNearOffer={ isNearOffersList }
-            title={ offer.title }
-            type={ offer.type }
-            price={ offer.price }
-            isFavorite={ offer.isFavorite }
-            isPremium={ offer.isPremium }
-            rating={ offer.rating }
-            previewImage={ offer.previewImage }
+            offer={ offer }
+            cardType={ isNearOffersList ? 'Near' : 'Base' }
+            handleOfferMouseOver={ setSelectedOffer }
           />
         ))}
       </div>

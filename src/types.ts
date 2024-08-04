@@ -1,5 +1,7 @@
 import { CITIES, OFFER_TYPES } from './consts';
 
+type Cities = typeof CITIES[number];
+
 type Location = {
   latitude: number;
   longitude: number;
@@ -12,14 +14,14 @@ type Offer = {
   type: typeof OFFER_TYPES[number];
   price: number;
   city: {
-    name: typeof CITIES[number];
+    name: Cities;
     location: Location;
   };
   location: Location;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
-  previewImage: string;
+  previewImage?: string;
 }
 
 type FullOffer = Omit<Offer, 'previewImage'> & {
@@ -41,4 +43,12 @@ type User = {
 
 type UserShort = Omit<User, 'email' | 'token'>;
 
-export type { Offer, FullOffer, Location, User, UserShort };
+type Comment = {
+  id: string;
+  date: string;
+  user: UserShort;
+  comment: string;
+  rating: number;
+}
+
+export type { Offer, FullOffer, Cities, Location, User, UserShort, Comment };

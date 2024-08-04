@@ -1,13 +1,16 @@
 type PriceProps = {
   price: number;
+  isBigElement?: boolean;
 }
 
 
-export default function Price({price}: PriceProps): JSX.Element {
+export default function Price({price, isBigElement = false}: PriceProps): JSX.Element {
+  const extraClass = isBigElement ? 'offer__' : 'place-card__';
+
   return (
-    <div className="place-card__price">
-      <b className="place-card__price-value">&euro;{price}</b>
-      <span className="place-card__price-text">&#47;&nbsp;night</span>
+    <div className={`${extraClass}price`}>
+      <b className={`${extraClass}price-value`}>&euro;{price}</b>
+      <span className={`${extraClass}price-text`}>{!isBigElement && ' /'}&nbsp;night</span>
     </div>
   );
 }

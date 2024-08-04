@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import './error-page.css';
+import { AppRoute } from '../../consts';
 
 export default function ErrorPage(): JSX.Element {
   return (
@@ -11,7 +12,7 @@ export default function ErrorPage(): JSX.Element {
 
       <div className='error-wrapper'></div>
 
-      <Link to='/' title='to main page'>
+      <Link to={ AppRoute.Main.path } title='to main page'>
         <svg id="svgWrap_2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 700 250">
           <g>
             <path id="id3_2" d="M195.7 232.67h-37.1V149.7H27.76c-2.64 0-5.1-.5-7.36-1.49-2.27-.99-4.23-2.31-5.88-3.96-1.65-1.65-2.95-3.61-3.89-5.88s-1.42-4.67-1.42-7.22V29.62h36.82v82.98H158.6V29.62h37.1v203.05z"/>
