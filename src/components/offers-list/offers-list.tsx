@@ -1,7 +1,6 @@
 import EmptyList from './components/empty-list';
 import FilledList from './components/filled-list';
-import { Offer } from '../../types';
-import { CITIES } from '../../consts';
+import { Offer, Cities } from '../../types';
 
 const SectionClass = {
   Empty: 'cities__no-places',
@@ -10,7 +9,7 @@ const SectionClass = {
 } as const;
 
 type OffersListProps = {
-  city: typeof CITIES[number];
+  city: Cities;
   offers: Offer[] | null;
   isNearOffersList?: boolean;
 }

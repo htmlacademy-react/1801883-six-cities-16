@@ -1,12 +1,12 @@
 import OfferItem from '../../offer-item/offer-item';
 import { Link } from 'react-router-dom';
-import { Offer } from '../../../types';
-import { CITIES, AppRoute } from '../../../consts';
+import { Offer, Cities } from '../../../types';
+import { AppRoute } from '../../../consts';
 
 type CityWrapperProps = {
-  city: typeof CITIES[number];
+  city: Cities;
   favoriteOffers: Offer[];
-  handlerCityClick: (city: typeof CITIES[number]) => void;
+  handlerCityClick: (city: Cities) => void;
 }
 
 

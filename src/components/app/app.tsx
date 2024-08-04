@@ -10,7 +10,7 @@ import LoginPage from '../../pages/login-page/login-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import { sortOffersByCity, getOffersByCity } from '../../utils';
-import { Offer, FullOffer, User } from '../../types';
+import { Offer, Cities, FullOffer, User } from '../../types';
 import { CITIES, AppRoute, AuthorizationStatus } from '../../consts';
 
 type AppProps = {
@@ -23,7 +23,7 @@ type AppProps = {
 
 
 export default function App({offers, user, userFavorites, getFullOffer, nearbyOffers}: AppProps): JSX.Element {
-  const [currentCity, setCurrentCity] = useState<typeof CITIES[number]>(CITIES[0]);
+  const [currentCity, setCurrentCity] = useState<Cities>(CITIES[0]);
   const sortedOffersByCity = sortOffersByCity(offers);
   const authorizationStatus = user === null ? AuthorizationStatus.NoAuth : AuthorizationStatus.Auth;
 

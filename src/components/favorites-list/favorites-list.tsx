@@ -1,12 +1,11 @@
 import EmptyFavoritesList from './components/empty-favorites-list';
 import FilledFavoritesList from './components/filled-favorites-list';
-import { Offer } from '../../types';
-import { CITIES } from '../../consts';
+import { Offer, Cities } from '../../types';
 
 type FavoritesListProps = {
   isEmptyList: boolean;
   favoriteOffers: Offer[] | null;
-  handlerCityClick: (city: typeof CITIES[number]) => void;
+  handlerCityClick: (city: Cities) => void;
 }
 
 

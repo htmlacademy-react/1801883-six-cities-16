@@ -1,11 +1,11 @@
 import CityFavoriteItem from './city-favorite-item';
 import { sortOffersByCity } from '../../../utils';
 import { CITIES } from '../../../consts';
-import { Offer } from '../../../types';
+import { Offer, Cities } from '../../../types';
 
 type FilledFavoritesListProps = {
   favoriteOffers: Offer[];
-  handlerCityClick: (city: typeof CITIES[number]) => void;
+  handlerCityClick: (city: Cities) => void;
 }
 
 
