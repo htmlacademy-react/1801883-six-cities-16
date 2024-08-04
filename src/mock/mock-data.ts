@@ -2,7 +2,8 @@ import { generateOffers } from './mock-offers';
 import { generateFullOffer } from './mock-full-offer';
 import { getFavorites } from './mock-favorites';
 import { getNearbyOffers } from './mock-nearby';
-import { Offer, FullOffer, User } from '../types';
+import { generateComments } from './mock-comments';
+import { Offer, FullOffer, User, Comment } from '../types';
 
 export default class MockData {
   #offers: Offer[] = generateOffers();
@@ -36,4 +37,6 @@ export default class MockData {
     const fullOffer = this.#offers.find((offer) => offer.id === id);
     return fullOffer ? generateFullOffer(fullOffer) : null;
   };
+
+  getComments = (): Comment[] => generateComments();
 }

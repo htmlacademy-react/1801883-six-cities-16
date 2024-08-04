@@ -43,4 +43,12 @@ type User = {
 
 type UserShort = Omit<User, 'email' | 'token'>;
 
-export type { Offer, FullOffer, Cities, Location, User, UserShort };
+type Comment = {
+  id: string;
+  date: string;
+  user: UserShort;
+  comment: string;
+  rating: number;
+}
+
+export type { Offer, FullOffer, Cities, Location, User, UserShort, Comment };

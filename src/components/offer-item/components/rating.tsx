@@ -2,13 +2,20 @@ import { RatingRange } from '../../../consts';
 
 type RatingProps = {
   rating: number;
-  isBigElement?: boolean;
+  type: keyof typeof RatingClass;
 }
 
+const RatingClass = {
+  Base: 'place-card__',
+  BigElement: 'offer__',
+  Comment: 'reviews__'
+} as const;
 
-export default function Rating({rating, isBigElement = false}: RatingProps): JSX.Element {
+
+export default function Rating({rating, type}: RatingProps): JSX.Element {
   const ratingInPercent: number = (Math.round(rating) / (RatingRange.Max - RatingRange.Min)) * 100;
-  const extraClass = isBigElement ? 'offer__' : 'place-card__';
+  const isBigElement = type === 'BigElement';
+  const extraClass = RatingClass[type];
 
   return (
     <div className={`${extraClass}rating rating`}>

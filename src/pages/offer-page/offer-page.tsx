@@ -10,16 +10,17 @@ import OffersList from '../../components/offers-list/offers-list';
 import ErrorPage from '../error-page/error-page';
 import { capitalizeFirstLetter, checkPluralRule } from '../../utils';
 import { AuthorizationStatus } from '../../consts';
-import { Offer, FullOffer } from '../../types';
+import { Offer, FullOffer, Comment } from '../../types';
 
 type OfferPageProps = {
   authorizationStatus: typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
   getFullOffer: (id: string) => FullOffer | null;
+  getComments: () => Comment[] | null;
   nearOffers: Offer[];
 }
 
 
-export default function OfferPage({authorizationStatus, getFullOffer, nearOffers}: OfferPageProps): JSX.Element {
+export default function OfferPage({authorizationStatus, getFullOffer, getComments, nearOffers}: OfferPageProps): JSX.Element {
   const offerId = useParams().id;
   const displayedOffer = offerId ? getFullOffer(offerId) : null;
 
@@ -40,7 +41,7 @@ export default function OfferPage({authorizationStatus, getFullOffer, nearOffers
                 <BookmarkButton isFavorite={ isFavorite } isBigButton />
               </div>
 
-              <Rating rating={ rating } isBigElement />
+              <Rating rating={ rating } type='BigElement' />
 
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">{capitalizeFirstLetter(type)}</li>
@@ -84,7 +85,7 @@ export default function OfferPage({authorizationStatus, getFullOffer, nearOffers
               </div>
 
 
-              <OfferComments authorizationStatus={ authorizationStatus } />
+              <OfferComments authorizationStatus={ authorizationStatus } getComments={ getComments } />
             </div>
           </div>
 

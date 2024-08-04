@@ -54,7 +54,7 @@ export default function OfferItem({offer, cardType, handleOfferMouseOver}: Offer
           <Price price={ price }/>
           <BookmarkButton isFavorite={ isFavorite } />
         </div>
-        <Rating rating={ rating } />
+        <Rating rating={ rating } type='Base' />
         <Title title={ title } currentLink={ currentLink } />
         <Type type={ type } />
       </div>
