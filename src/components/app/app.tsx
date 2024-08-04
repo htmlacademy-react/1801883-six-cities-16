@@ -32,12 +32,12 @@ export default function App({offers, user, userFavorites, getFullOffer, nearbyOf
       <BrowserRouter>
         <Routes>
           <Route path={ AppRoute.Main.path } element={ <Layout user={ user } favoritesNumber={ userFavorites ? userFavorites.length : 0 }/> }>
-            <Route index element={ <MainPage offers={ getOffersByCity(currentCity, sortedOffersByCity) } currentCity={ currentCity } handlerTabCLick={ setCurrentCity } /> }/>
+            <Route index element={ <MainPage offers={ getOffersByCity(currentCity, sortedOffersByCity) } currentCity={ currentCity } handleTabCLick={ setCurrentCity } /> }/>
             <Route path={ AppRoute.Login.path } element={ <LoginPage currentCity={ currentCity }/> } />
             <Route path={ AppRoute.Favorites.path }
               element={
                 <PrivateRoute authorizationStatus={ authorizationStatus } redirectRoute={AppRoute.Login.path}>
-                  <FavoritesPage favoriteOffers={ userFavorites } handlerCityClick={ setCurrentCity } />
+                  <FavoritesPage favoriteOffers={ userFavorites } handleCityClick={ setCurrentCity } />
                 </PrivateRoute>
               }
             />

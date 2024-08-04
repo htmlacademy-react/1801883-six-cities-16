@@ -6,16 +6,16 @@ import { Offer, Cities } from '../../types';
 type MainPageProps = {
   offers: Offer[] | null;
   currentCity: Cities;
-  handlerTabCLick: (city: Cities) => void;
+  handleTabCLick: (city: Cities) => void;
 }
 
-export default function MainPage({offers, currentCity, handlerTabCLick}: MainPageProps): JSX.Element {
+export default function MainPage({offers, currentCity, handleTabCLick}: MainPageProps): JSX.Element {
   const isEmptyList = (offers === null || offers.length === 0);
 
   return (
     <main className={`page__main page__main--index ${isEmptyList ? 'page__main--index-empty' : ''}`}>
       <h1 className="visually-hidden">Cities</h1>
-      <TabsList currentCity={ currentCity } handlerTabCLick={ handlerTabCLick }/>
+      <TabsList currentCity={ currentCity } handleTabCLick={ handleTabCLick }/>
 
       <div className="cities">
         <div className={`cities__places-container container ${isEmptyList ? 'cities__places-container--empty' : ''}`}>
